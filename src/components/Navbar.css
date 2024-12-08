@@ -1,0 +1,9 @@
+/* src/components/Navbar.css */
+.logo-highlight {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .logo-highlight:hover {
+    transform: scale(1.1);
+  }
+  
