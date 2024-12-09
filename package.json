@@ -40,9 +40,7 @@
     ]
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "webpack": "^4.29.6",
-    "webpack-dev-server": "^3.2.1"
+    "cross-env": "^7.0.3"
   },
   "engines": {
     "node": "20.16.0"
