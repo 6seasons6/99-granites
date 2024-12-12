@@ -139,118 +139,11 @@
                             <th scope="col">Handle</th>
                           </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Big Banana</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Potatoes</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Awesome Brocoli</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                        <tbody id="cart-items">
+
                         </tbody>
-                    </table>
+                        </table>
+                        
                 </div>
                 <div class="mt-5">
                     <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
@@ -394,6 +287,130 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        // Function to update the cart count badge
+        function updateCartCount() {
+            // Get cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Calculate the total number of items in the cart
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+            // Update the badge count
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = totalItems;
+        }
+    
+        // Function to update the cart UI
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const totalElement = document.getElementById('total');
+    
+            // Get cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Clear the current cart items
+            cartItemsContainer.innerHTML = '';
+    
+            let subtotal = 0;
+    
+            cart.forEach(item => {
+                // Calculate total for this item
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+    
+                // Create a table row for each cart item
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <th scope="row">
+                        <div class="d-flex align-items-center">
+                            <img src="${item.image}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                        </div>
+                    </th>
+                    <td><p class="mb-0 mt-4">${item.name}</p></td>
+                    <td><p class="mb-0 mt-4">${item.price.toFixed(2)} $</p></td>
+                    <td>
+                        <div class="input-group quantity mt-4" style="width: 100px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="changeQuantity(${item.id}, -1)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm text-center border-0" value="${item.quantity}" readonly>
+                            <div class="input-group-btn">
+                                <button class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="changeQuantity(${item.id}, 1)">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td><p class="mb-0 mt-4">${itemTotal.toFixed(2)} $</p></td>
+                    <td>
+                        <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="removeItem(${item.id})">
+                            <i class="fa fa-times text-danger"></i>
+                        </button>
+                    </td>
+                `;
+                cartItemsContainer.appendChild(row);
+            });
+    
+            // Update subtotal and total (with flat shipping fee)
+            const shippingCost = 3.00;
+            const total = subtotal + shippingCost;
+            subtotalElement.textContent = `${subtotal.toFixed(2)} $`;
+            totalElement.textContent = `${total.toFixed(2)} $`;
+    
+            // Save updated cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+    
+            // Update the cart count badge
+            updateCartCount();
+        }
+    
+        // Change quantity of an item
+        function changeQuantity(id, change) {
+            // Get cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeItem(id);  // Remove item if quantity reaches zero
+                } else {
+                    // Update cart in localStorage
+                    localStorage.setItem('cart', JSON.stringify(cart));
+    
+                    // Update UI after changing quantity
+                    updateCartUI();
+                }
+            }
+        }
+    
+        // Remove item from cart
+        function removeItem(id) {
+            // Get cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Remove the item from the cart
+            cart = cart.filter(item => item.id !== id);
+    
+            // Update the cart in localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+    
+            // Update the UI
+            updateCartUI();
+        }
+    
+        // Initialize the cart UI and badge count when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartUI();
+            updateCartCount(); // Ensure the badge reflects the cart count on page load
+        });
+    </script>
+    
+    
     </body>
 
 </html>
