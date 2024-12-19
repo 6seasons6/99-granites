@@ -147,7 +147,7 @@
                             <p class="mb-0 pe-4" id="cart-total">$0.00</p>
                         </div>
                         <a href="chackout.html">
-                        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button" >Proceed Checkout</button></a>
+                        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button" id="checkoutButton" >Proceed Checkout</button></a>
                     </div>
                 </div>
             </div>
@@ -346,9 +346,29 @@
             localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart
             updateCartUI(); // Refresh UI
         }
-    
+        
+
+       
+
         // Initial cart update on page load
         document.addEventListener('DOMContentLoaded', updateCartUI);
+
+
+        //  // cheoutbutton handler
+        //  document.getElementById("chekoutButton").addEventListener("click", () => {
+        //     const cart = getCart();
+        //     localStorage.setItem("checkoutItems", JSON.stringify(cart));
+        //     window.location.href = "chackout.html"; // Redirect to checkout page
+        // });
+
+
+
+
+        
+
+
+
+    
     </script>
     
 </body>

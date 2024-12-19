@@ -198,6 +198,27 @@
                             </ul>
                         </div>
                     </div>
+
+                     <!-- Modal for Item Added Confirmation -->
+                    <div class="modal fade" id="itemAddedModal" tabindex="-1" aria-labelledby="itemAddedModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="itemAddedModalLabel">Item Added Successfully</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <span id="modal-message">Item added successfully!</span>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <a href="cart.html" class="btn btn-primary">Go to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal for Item Added Confirmation End-->
+
                     <div class="tab-content">
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
@@ -214,7 +235,12 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="javascript:void(0)" class="btn border border-secondary rounded-pill px-3 text-primary"  
+                                                            onclick="addToCart(3, 'Apricots', 4.99, 'img/fruite-item-4.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                        </a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -230,7 +256,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +274,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary" ><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(2,'raspberries',4.99,'img/fruite-item-2.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -262,7 +292,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(3,'apricots',4.99,'img/fruite-item-4.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -278,7 +310,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(4,'banana',4.99,'img/fruite-item-3.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -294,7 +328,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(5,'orange',4.99,'img/fruite-item-1.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,7 +346,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(2,'raspberries',4.99,'img/fruite-item-2.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -326,7 +364,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -350,7 +390,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -366,7 +408,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(2,'raspberries',4.99,'img/fruite-item-2.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -390,7 +434,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(5,'oranges',4.99,'img/fruite-item-1.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -406,7 +452,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(6, 'Apple',4.99,'img/fruite-item-6.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -430,7 +478,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -446,7 +496,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(3,'apricots',4.99,'img/fruite-item-4.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -470,7 +522,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(4,'banana',4.99,'img/fruite-item-3.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -486,7 +540,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(2,'raspberries',4.99,'img/fruite-item-2.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -502,7 +558,9 @@
                                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                                        <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                                        <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(5,'oranges',4.99,'img/fruite-item-1.jpg')">
+                                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -582,7 +640,9 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(7,'parsely',4.99,'img/vegetable-item-6.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -592,11 +652,13 @@
                         </div>
                         <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Vegetable</div>
                         <div class="p-4 rounded-bottom">
-                            <h4>Parsely</h4>
+                            <h4>Tomato</h4>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(8,'tomato',4.99,'img/vegetable-item-1.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -610,7 +672,10 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(4,'banana',7.99,'img/fruite-item-3.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+
                             </div>
                         </div>
                     </div>
@@ -624,7 +689,9 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(9,'bell paper',7.99,'img/vegetable-item-4.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -638,7 +705,9 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(10,'potatoes',7.99,'img/vegetable-item-5.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -652,7 +721,9 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(7,'parsely',7.99,'img/vegetable-item-6.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -666,7 +737,9 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(10,'potatoes',7.99,'img/vegetable-item-5.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -680,7 +753,9 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                             <div class="d-flex justify-content-between flex-lg-wrap">
                                 <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(7,'parsely',7.99,'img/vegetable-item-6.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -735,7 +810,7 @@
                                     <img src="img/best-product-1.jpg" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">Organic Tomato</a>
+                                    <a href="#" class="h5">Orange</a>
                                     <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -744,7 +819,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(5,'orange',3.12,'img/best-product-1.jpg')">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -756,7 +833,7 @@
                                     <img src="img/best-product-2.jpg" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">Organic Tomato</a>
+                                    <a href="#" class="h5">Raspberries</a>
                                     <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -765,7 +842,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(2,'raspberries',3.12,'img/best-product-2.jpg')">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -777,7 +856,7 @@
                                     <img src="img/best-product-3.jpg" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">Organic Tomato</a>
+                                    <a href="#" class="h5">Banana</a>
                                     <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -786,7 +865,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(4,'banana',3.12,'img/best-product-3.jpg')">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -798,7 +879,7 @@
                                     <img src="img/best-product-4.jpg" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">Organic Tomato</a>
+                                    <a href="#" class="h5">Apricots</a>
                                     <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -807,7 +888,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(3,'apricots',3.12,'img/best-product-4.jpg')">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -819,7 +902,7 @@
                                     <img src="img/best-product-5.jpg" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">Organic Tomato</a>
+                                    <a href="#" class="h5">Grapes</a>
                                     <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -828,7 +911,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(1,'Grapes',3.12,'img/best-product-.5jpg')">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -840,7 +925,7 @@
                                     <img src="img/best-product-6.jpg" class="img-fluid rounded-circle w-100" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <a href="#" class="h5">Organic Tomato</a>
+                                    <a href="#" class="h5">Apple</a>
                                     <div class="d-flex my-3">
                                         <i class="fas fa-star text-primary"></i>
                                         <i class="fas fa-star text-primary"></i>
@@ -849,7 +934,9 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                    <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(6,'Apple',3.12,'img/best-product-6.jpg')">
+                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -858,7 +945,7 @@
                         <div class="text-center">
                             <img src="img/fruite-item-1.jpg" class="img-fluid rounded" alt="">
                             <div class="py-4">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Orange</a>
                                 <div class="d-flex my-3 justify-content-center">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -867,7 +954,9 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(5,'orange',3.12,'img/fruite-item-1.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -875,7 +964,7 @@
                         <div class="text-center">
                             <img src="img/fruite-item-2.jpg" class="img-fluid rounded" alt="">
                             <div class="py-4">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Raspberries</a>
                                 <div class="d-flex my-3 justify-content-center">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -884,7 +973,10 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(2,'Raspberries',3.12,'img/fruite-item-2.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                            
                             </div>
                         </div>
                     </div>
@@ -892,7 +984,7 @@
                         <div class="text-center">
                             <img src="img/fruite-item-3.jpg" class="img-fluid rounded" alt="">
                             <div class="py-4">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Banana</a>
                                 <div class="d-flex my-3 justify-content-center">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -901,7 +993,9 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(4,'Banana',3.12,'img/fruite-item-3.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -909,7 +1003,7 @@
                         <div class="text-center">
                             <img src="img/fruite-item-4.jpg" class="img-fluid rounded" alt="">
                             <div class="py-2">
-                                <a href="#" class="h5">Organic Tomato</a>
+                                <a href="#" class="h5">Apricots</a>
                                 <div class="d-flex my-3 justify-content-center">
                                     <i class="fas fa-star text-primary"></i>
                                     <i class="fas fa-star text-primary"></i>
@@ -918,7 +1012,9 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <h4 class="mb-3">3.12 $</h4>
-                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <!-- <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a> -->
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary"  onclick="addToCart(3,'Apricots',3.12,'img/fruite-item-4.jpg')">
+                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -1164,6 +1260,89 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+    <script>
+        // Function to update the cart count badge
+        function updateCartCount() {
+            // Get cart from localStorage or initialize an empty array if not found
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Calculate the total number of items in the cart
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+            // Update the badge count
+            const cartCountElement = document.getElementById('cart-count');
+            if (cartCountElement) {
+                 cartCountElement.textContent = totalItems;
+             }
+        }
+    
+        // Function to add a product to the cart
+        function addToCart(id, name, price, image) {
+            // Get cart from localStorage or initialize an empty array if not found
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Check if the product is already in the cart
+            let existingProduct = cart.find(item => item.id === id);
+            if (existingProduct) {
+                // If the product is already in the cart, increase quantity
+                existingProduct.quantity += 1;
+            } else {
+                // If the product is not in the cart, add it
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    quantity: 1,
+                    image: image
+                });
+            }
+    
+            // Save the updated cart back to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+    
+            // Update the cart count badge
+            updateCartCount();
+    
+            // Show a confirmation modal or alert
+            document.getElementById('modal-message').innerText = `${name} added to cart`;
+            const itemAddedModal = new bootstrap.Modal(document.getElementById('itemAddedModal'));
+            itemAddedModal.show();
+        }
+    
+        // Event listener for "Add to Cart" buttons
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount(); // Reflect the correct count on page load
+    
+            // Attach click event to all "Add to Cart" buttons
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent default anchor behavior
+    
+                    // Extract product data from the button's data attributes
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+    
+                    // Call the addToCart function
+                    addToCart(id, name, price, image);
+                });
+            });
+        });
+    </script>
+    
     </body>
 
 </html>
