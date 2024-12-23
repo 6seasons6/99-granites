@@ -3,11 +3,18 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User'); // Correct import path
 require('dotenv').config();
+const rateLimit = require('express-rate-limit');
+
+// Rate limiter middleware
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+});
 
 const router = express.Router();
 
 // Signup Route
-router.post('/signup', async (req, res) => {
+router.post('/signup', limiter, async (req, res) => {
     console.log(req.body); 
     const { username, email, password, confirmPassword } = req.body;
 
@@ -47,7 +54,7 @@ router.post('/signup', async (req, res) => {
 });
 
 // Signin Route
-router.post('/signin', async (req, res) => {
+router.post('/signin', limiter, async (req, res) => {
     const { email, password } = req.body;
 
     try {
