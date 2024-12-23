@@ -198,40 +198,11 @@
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-2.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Awesome Brocoli</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-5.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Potatoes</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-3.png" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Big Banana</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
+                                    <tbody id="checkout-items">
+                                        <!-- Cart ietms will be dynamically added here -->
+                                    </tbody>
+    
+                                    <tfoot>
                                         <tr>
                                             <th scope="row">
                                             </th>
@@ -240,9 +211,9 @@
                                             <td class="py-5">
                                                 <p class="mb-0 text-dark py-3">Subtotal</p>
                                             </td>
-                                            <td class="py-5">
+                                            <td class="py-5" id="checkout-total">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$414.00</p>
+                                                    <p class="mb-0 text-dark" id="checkout-subtotal">$0.00</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -277,11 +248,11 @@
                                             <td class="py-5"></td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$135.00</p>
+                                                    <p class="mb-0 text-dark" id="final-total">$0.00</p>
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tfoot>
                                 </table>
                             </div>
                             <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
@@ -318,7 +289,7 @@
                                 </div>
                             </div>
                             <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                                <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                                <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary" id="complete-order">Place Order</button>
                             </div>
                         </div>
                     </div>
@@ -435,6 +406,97 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+     
+
+   
+
+    <script>
+        // Function to retrieve cart data from localStorage
+        function getCart() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
+        }
+        
+        // Function to update the checkout UI
+        function updateCheckoutUI() {
+            const checkoutItemsContainer = document.getElementById('checkout-items');
+            const checkoutSubtotalElement = document.getElementById('checkout-subtotal');
+            const finalTotalElement = document.getElementById('final-total');
+            const shippingOptions = document.querySelectorAll('input[name="Shipping-1"]');
+        
+            const cart = getCart();
+            checkoutItemsContainer.innerHTML = ''; // Clear existing items
+            let subtotal = 0;
+        
+            // Populate checkout items table
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+        
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>
+                        <img src="${item.image}" alt="${item.name}" class="img-fluid rounded-circle" style="width: 50px; height: 50px;">
+                    </td>
+                    <td>${item.name}</td>
+                    <td>${item.price.toFixed(2)} $</td>
+                    <td>${item.quantity}</td>
+                    <td>${itemTotal.toFixed(2)} $</td>
+                `;
+                checkoutItemsContainer.appendChild(row);
+            });
+        
+            // Update subtotal and total
+            checkoutSubtotalElement.innerText = `$${subtotal.toFixed(2)}`;
+            updateFinalTotal(subtotal);
+        
+            // Add event listeners for shipping options
+            shippingOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    updateFinalTotal(subtotal);
+                });
+            });
+        }
+        
+        // Function to calculate and update the final total
+        function updateFinalTotal(subtotal) {
+            const shippingOptions = document.querySelectorAll('input[name="Shipping-1"]');
+            let shippingCost = 0;
+        
+            // Determine the selected shipping cost
+            shippingOptions.forEach(option => {
+                if (option.checked) {
+                    if (option.id === 'Shipping-2') {
+                        shippingCost = 15.00; // Flat rate
+                    } else if (option.id === 'Shipping-3') {
+                        shippingCost = 8.00; // Local pickup
+                    } else {
+                        shippingCost = 0.00; // Free shipping
+                    }
+                }
+            });
+        
+            // Update final total
+            const finalTotal = subtotal + shippingCost;
+            document.getElementById('final-total').innerText = `$${finalTotal.toFixed(2)}`;
+        }
+        
+        // Initialize checkout UI on page load
+        document.addEventListener('DOMContentLoaded', updateCheckoutUI);
+        </script>
+        
+
+
+
+
+
+
+
+
+    
+
+   
+      
     </body>
 
 </html>
