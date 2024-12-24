@@ -49,7 +49,7 @@ const Navbar = () => {
                 <a href="cart.html" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div className="dropdown-menu m-0 bg-secondary rounded-0">
                   <a href="cart.html" className="dropdown-item">Cart</a>
-                  <a href="chackout.html" className="dropdown-item">Chackout</a>
+                  <a href="chackout.html" className="dropdown-item">Checkout</a>
                   <a href="testimonial.html" className="dropdown-item">Testimonial</a>
                   <a href="404.html" className="dropdown-item">404 Page</a>
                 </div>
@@ -60,13 +60,13 @@ const Navbar = () => {
               <button className="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal">
                 <i className="fas fa-search text-primary"></i>
               </button>
-              <a href="/cart" className="position-relative me-4 my-auto">
-  <i className="fa fa-shopping-bag fa-2x"></i>
-  <span className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style={{top: "-5px", left: "15px", height: "20px", minWidth: "20px"}}>3</span>
-</a>
-<a href="/profile" className="my-auto">
-  <i className="fas fa-user fa-2x"></i>
-</a>
+              <a href="./cart.html" className="position-relative me-4 my-auto">
+                  <i className="fa fa-shopping-bag fa-2x"></i>
+                  <span id="cart-count" className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style={{top: "-5px", left: "15px", height: "20px", minWidth: "20px"}}>0</span>
+              </a>
+              <a href="/profile" className="my-auto">
+                <i className="fas fa-user fa-2x"></i>
+              </a>
 
             </div>
           </div>

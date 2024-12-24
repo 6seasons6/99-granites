@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="carousel-item rounded">
                                     <img src="img/hero-img-2.jpg" class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                                    <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                    <a href="#" class="btn px-4 py-2 text-white rounded">Vegetables</a>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
@@ -1272,20 +1272,25 @@
 
 
     <script>
+       
         // Function to update the cart count badge
         function updateCartCount() {
             // Get cart from localStorage or initialize an empty array if not found
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
             // Calculate the total number of items in the cart
-            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            // let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            const totalItems=cart.length
     
             // Update the badge count
             const cartCountElement = document.getElementById('cart-count');
             if (cartCountElement) {
                  cartCountElement.textContent = totalItems;
+                //  cartCountElement.innerText = cart.length;
              }
         }
+        
     
         // Function to add a product to the cart
         function addToCart(id, name, price, image) {
@@ -1314,6 +1319,7 @@
             // Update the cart count badge
             updateCartCount();
     
+    
             // Show a confirmation modal or alert
             document.getElementById('modal-message').innerText = `${name} added to cart`;
             const itemAddedModal = new bootstrap.Modal(document.getElementById('itemAddedModal'));
@@ -1321,9 +1327,10 @@
         }
     
         // Event listener for "Add to Cart" buttons
-        document.addEventListener('DOMContentLoaded', function () {
+        window.onload = function(){
+            setTimeout(function(){ 
             updateCartCount(); // Reflect the correct count on page load
-    
+        },10);
             // Attach click event to all "Add to Cart" buttons
             const addToCartButtons = document.querySelectorAll('.add-to-cart');
             addToCartButtons.forEach(button => {
@@ -1340,7 +1347,8 @@
                     addToCart(id, name, price, image);
                 });
             });
-        });
+        }
+
     </script>
     
     </body>
