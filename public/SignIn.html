@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="google-signin-client_id" content="98310254268-541immjvpidajf8jbofv07p853ave82c.apps.googleusercontent.com">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,10 +29,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -44,11 +46,16 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
-
+    
     <!-- Navbar start -->
     <div class="container-fluid fixed-top">
         <div class="container topbar bg-primary d-none d-lg-block">
@@ -106,6 +113,9 @@
         <h2 class="text-center">Sign In</h2>
         <div id="message" class="alert text-danger" style="display: none;"></div>
         <form id="signinForm">
+            <div class="center-container">
+           
+        </div>
             <div class="form-group mb-3"> <!-- Added mb-3 for margin-bottom -->
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
@@ -115,6 +125,13 @@
                 <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <div class="center-container">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+            <p class="text-center mt-3">
+                <a href="reset-password.html">Forgot Password?</a>
+            </p>
+            
         </form>
         <p class="text-center mt-3">Don't have an account? <a href="signup.html">Sign Up</a></p>
     </div>
@@ -192,41 +209,52 @@
     <!-- Footer End -->
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const signinForm = document.getElementById('signinForm');
-        const messageElement = document.getElementById('message');
-    
-        if (signinForm) {
-            signinForm.addEventListener('submit', function (event) {
-                event.preventDefault(); // Prevent the default form submission
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-    
-                // Retrieve user data from local storage
-                const userData = localStorage.getItem(email);
-                if (userData) {
-                    const user = JSON.parse(userData);
-                    // Check if the password matches
-                    if (user.password === password) {
-                        window.location.href = 'index.html'; // Redirect to a welcome page or dashboard
-                    } else if (messageElement) {
-                        messageElement.innerText = 'Incorrect password. Please try again.';
-                        messageElement.style.display = 'block';
-                    }
-                } else if (messageElement) {
-                    messageElement.innerText = 'No account found with this email. Please sign up.';
+   document.addEventListener('DOMContentLoaded', function () {
+    const signinForm = document.getElementById('signinForm');
+    const messageElement = document.getElementById('message');
+
+    if (signinForm) {
+        signinForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Retrieve user data from localStorage
+            const userData = localStorage.getItem(email);
+            if (userData) {
+                const user = JSON.parse(userData);
+                // Check if the password matches
+                if (user.password === password) {
+                    window.location.href = 'index.html'; // Redirect to a welcome page or dashboard
+                } else {
+                    messageElement.innerText = 'Incorrect password. Please try again.';
                     messageElement.style.display = 'block';
                 }
-            });
-        }
-    
-        if (localStorage.getItem('alreadySignedUp') && messageElement) {
-            messageElement.innerText = 'You have already signed up. Please sign in.';
-            messageElement.style.display = 'block';
-            localStorage.removeItem('alreadySignedUp');
-        }
+            } else {
+                messageElement.innerText = 'No account found with this email. Please sign up.';
+                messageElement.style.display = 'block';
+            }
+        });
+    }
+});
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
     });
+  }
+
 </script>    
+
 
 </body>
 

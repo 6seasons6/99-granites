@@ -81,7 +81,7 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <a href="cart.html" class="dropdown-item">Cart</a>
-                                    <a href="chackout.html" class="dropdown-item">Chackout</a>
+                                    <a href="chackout.html" class="dropdown-item">Checkout</a>
                                     <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                     <a href="404.html" class="dropdown-item">404 Page</a>
                                 </div>
@@ -613,11 +613,14 @@
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
     
             // Calculate the total number of items in the cart
-            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            // let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalItems=cart.length
     
             // Update the badge count
             const cartCountElement = document.getElementById('cart-count');
-            cartCountElement.textContent = totalItems;
+            if(cartCountElement){
+                cartCountElement.textContent = totalItems;
+            }
         }
     
         // Function to add a product to the cart

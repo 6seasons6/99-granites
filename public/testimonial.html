@@ -76,7 +76,7 @@
                                 <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <a href="cart.html" class="dropdown-item">Cart</a>
-                                    <a href="chackout.html" class="dropdown-item">Chackout</a>
+                                    <a href="chackout.html" class="dropdown-item">Checkout</a>
                                     <a href="testimonial.html" class="dropdown-item active">Testimonial</a>
                                     <a href="404.html" class="dropdown-item">404 Page</a>
                                 </div>
@@ -85,9 +85,9 @@
                         </div>
                         <div class="d-flex m-3 me-0">
                             <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                            <a href="#" class="position-relative me-4 my-auto">
+                            <a href="cart.html" class="position-relative me-4 my-auto">
                                 <i class="fa fa-shopping-bag fa-2x"></i>
-                                <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                                <span id="cart-count" class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">0</span>
                             </a>
                             <a href="#" class="my-auto">
                                 <i class="fas fa-user fa-2x"></i>
@@ -332,68 +332,18 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-      <!-- Search bar Functionality -->
-      <script>
-        function searchText() {
-        let text = document.getElementById("search").value.trim();
-
-        // Ensure a keyword is entered
-        if (!text) {
-            alert("Please enter a keyword to search.");
-            return;
-        }
-
-        // Remove any existing highlights
-        document.querySelectorAll("mark").forEach(mark => {
-            const parent = mark.parentNode;
-            parent.replaceChild(document.createTextNode(mark.textContent), mark);
-            parent.normalize();
-        });
-
-        // Escape special characters for regex
-        text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
-        let pattern = new RegExp(text, "gi");
-
-        // Walk through the DOM and search globally
-        let matches = 0;
-        const walkDOM = (node) => {
-            if (node.nodeType === 3) { // Text node
-                const matchArray = node.nodeValue.match(pattern);
-                if (matchArray) {
-                    matches += matchArray.length;
-                    const span = document.createElement("span");
-                    span.innerHTML = node.nodeValue.replace(pattern, match => `<mark>${match}</mark>`);
-                    node.parentNode.replaceChild(span, node);
-                }
-            } else if (node.nodeType === 1 && node.tagName !== "SCRIPT" && node.tagName !== "STYLE" && node.tagName !== "MARK") { // Element node
-                for (let child of node.childNodes) {
-                    walkDOM(child);
-                }
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the cart from localStorage and parse it as JSON
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            // Find the element with ID 'cart-count' and update its content
+            const cartCountElement = document.getElementById('cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length;
             }
-        };
-
-        walkDOM(document.body);
-
-        // Handle no matches found
-        if (matches === 0) {
-            alert("No match found!");
-            return;
-        }
-
-        // Scroll to the first match
-        const firstMark = document.querySelector("mark");
-        if (firstMark) {
-            firstMark.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-
-        // Automatically close the modal
-        const modal = bootstrap.Modal.getInstance(document.getElementById("searchModal"));
-        if (modal) {
-            modal.hide();
-        }
-    }
-    </script>
+        });
+        </script>
     </body>
 
 </html>
