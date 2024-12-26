@@ -30,7 +30,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
+<style>
+    mark {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+}
+</style>
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
     </head>
@@ -108,8 +115,12 @@
                     </div>
                     <div class="modal-body d-flex align-items-center">
                         <div class="input-group w-75 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                            <!-- <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span> -->
+                            <input id="search" type="search" class="form-control p-3" placeholder="Enter keywords" aria-describedby="search-icon-1">
+                            <button id="search-btn" class="btn btn-primary p-3" onclick="searchText()">
+                                <i class="fa fa-search"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -649,6 +660,69 @@
         // Call updateCartCount on page load to reflect the correct count
         document.addEventListener('DOMContentLoaded', updateCartCount);
     </script>
-    
+
+
+
+    <!-- Search bar Functionality -->
+    <script>
+        function searchText() {
+        let text = document.getElementById("search").value.trim();
+
+        // Ensure a keyword is entered
+        if (!text) {
+            alert("Please enter a keyword to search.");
+            return;
+        }
+
+        // Remove any existing highlights
+        document.querySelectorAll("mark").forEach(mark => {
+            const parent = mark.parentNode;
+            parent.replaceChild(document.createTextNode(mark.textContent), mark);
+            parent.normalize();
+        });
+
+        // Escape special characters for regex
+        text = text.replace(/[.*+?^=!:${}()|\[\]\/\\]/g, "\\$&");
+        let pattern = new RegExp(text, "gi");
+
+        // Walk through the DOM and search globally
+        let matches = 0;
+        const walkDOM = (node) => {
+            if (node.nodeType === 3) { // Text node
+                const matchArray = node.nodeValue.match(pattern);
+                if (matchArray) {
+                    matches += matchArray.length;
+                    const span = document.createElement("span");
+                    span.innerHTML = node.nodeValue.replace(pattern, match => `<mark>${match}</mark>`);
+                    node.parentNode.replaceChild(span, node);
+                }
+            } else if (node.nodeType === 1 && node.tagName !== "SCRIPT" && node.tagName !== "STYLE" && node.tagName !== "MARK") { // Element node
+                for (let child of node.childNodes) {
+                    walkDOM(child);
+                }
+            }
+        };
+
+        walkDOM(document.body);
+
+        // Handle no matches found
+        if (matches === 0) {
+            alert("No match found!");
+            return;
+        }
+
+        // Scroll to the first match
+        const firstMark = document.querySelector("mark");
+        if (firstMark) {
+            firstMark.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        // Automatically close the modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById("searchModal"));
+        if (modal) {
+            modal.hide();
+        }
+    }
+    </script>
 
 </html>
