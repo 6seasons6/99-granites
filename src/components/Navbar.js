@@ -64,7 +64,9 @@ const Navbar = () => {
                   <i className="fa fa-shopping-bag fa-2x"></i>
                   <span id="cart-count" className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style={{top: "-5px", left: "15px", height: "20px", minWidth: "20px"}}>0</span>
               </a>
-              <a href="/profile" className="my-auto">
+
+              <a href="SignIn.html" className="my-auto">
+
                 <i className="fas fa-user fa-2x"></i>
               </a>
 
