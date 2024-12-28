@@ -28,7 +28,21 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
+
 <body>
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+<style>
+    mark {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+}
+</style>        
+    </head>
+
 
     <!-- Spinner Start -->
     <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
@@ -60,7 +74,8 @@
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                         <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="shop.html" class="nav-item nav-link">Shop</a>
+                        <a href="shop.html" class="nav-item nav-link active">Shop</a>
+                        
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0 bg-secondary rounded-0">
@@ -68,16 +83,15 @@
                                 <a href="chackout.html" class="dropdown-item">Chackout</a>
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                                 <a href="404.html" class="dropdown-item">404 Page</a>
-
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="d-flex m-3 me-0">
                         <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                        <a href="#" class="position-relative me-4 my-auto">
+                        <a href="cart.html" class="position-relative me-4 my-auto">
                             <i class="fa fa-shopping-bag fa-2x"></i>
-                            <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                            <span id="cart-count" class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">0</span>
                         </a>
                         <a href="#" class="my-auto">
                             <i class="fas fa-user fa-2x"></i>
@@ -88,7 +102,7 @@
         </div>
     </div>
     <!-- Navbar End -->
-
+     
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
         <h1 class="text-center text-white display-6">Shop Detail</h1>
@@ -169,41 +183,11 @@
                                 </div>
                                 <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
                                     <div class="d-flex">
-                                        <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                        <div class="">
-                                            <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                            <div class="d-flex justify-content-between">
-                                                <h5>Jason Smith</h5>
-                                                <div class="d-flex mb-3">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                            <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                                words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                                        <div id="reviews-section" class="mb-5">
+                                
+                                            <!-- Existing reviews can go here -->
                                         </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <img src="img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                        <div class="">
-                                            <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                            <div class="d-flex justify-content-between">
-                                                <h5>Sam Peters</h5>
-                                                <div class="d-flex mb-3">
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star text-secondary"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                            <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                                words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                                         </div>
-                                    </div>
                                 </div>
                                 <div class="tab-pane" id="nav-vision" role="tabpanel">
                                     <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam
@@ -213,7 +197,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="#">
+                        <form id="review-form" action="#">
                             <h4 class="mb-5 fw-bold">Leave a Reply</h4>
                             <div class="row g-4">
                                 <div class="col-lg-6">
@@ -243,7 +227,8 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
+                                        <button type="submit" class="btn border border-secondary text-primary rounded-pill px-4 py-3">Post Comment</button>
+                                            
                                     </div>
                                 </div>
                             </div>
@@ -649,6 +634,21 @@
     <script src="js/main.js"></script>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Retrieve the cart from localStorage and parse it as JSON
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Find the element with ID 'cart-count' and update its content
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+            cartCountElement.textContent = cart.length;
+        }
+    });
+    </script>
+    </body>
+
+
+    <script>
         // Function to get query parameters from the URL
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -715,7 +715,98 @@
         document.addEventListener('DOMContentLoaded', () => {
             const productId = getQueryParam('id');
             displayProductDetails(productId);
+            displayProductReviews(productId);
         });
+        
+        // Function to handle review submission
+    document.getElementById('review-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const name = this.querySelector('input[type="text"]').value;
+        const email = this.querySelector('input[type="email"]').value;
+        const review = this.querySelector('textarea').value;
+        const rating = Array.from(this.querySelectorAll('.fa-star')).filter(star => star.classList.contains('text-primary')).length;
+
+        // Get the current product ID
+        const productId = getQueryParam('id');
+
+        // Create a new review object
+        const newReview = {
+            name,
+            email,
+            review,
+            rating,
+            productId
+        };
+
+        // Retrieve existing reviews from local storage
+        const existingReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+
+        // Add the new review to the existing reviews
+        existingReviews.push(newReview);
+
+        // Save the updated reviews back to local storage
+        localStorage.setItem('reviews', JSON.stringify(existingReviews));
+
+        // Display the new review
+        displayReview(newReview);
+
+        // Clear the form fields
+        this.reset();
+        // Reset star ratings
+        this.querySelectorAll('.fa-star').forEach(star => {
+            star.classList.remove('text-primary');
+            star.classList.add('text-muted');
+        });
+    });
+
+    // Function to display a review
+    function displayReview(review) {
+        const reviewElement = document.createElement('div');
+        reviewElement.classList.add('d-flex', 'mb-4');
+        reviewElement.innerHTML = `
+            <div class="me-3">
+                <img src="img/avatar.jpg" class="img-fluid rounded-circle" style="width: 50px; height: 50px;" alt="">
+            </div>
+            <div>
+                <h5>${review.name} <span class="text-warning">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span></h5>
+                <p>${review.review}</p>
+            </div>
+        `;
+        document.getElementById('reviews-section').appendChild(reviewElement);
+    }
+
+    // Function to display reviews for the current product
+    function displayProductReviews(productId) {
+        const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        const productReviews = reviews.filter(review => review.productId === productId);
+
+        productReviews.forEach(review => {
+            displayReview(review);
+        });
+    }
+    
+    // Handle star rating selection
+    document.querySelectorAll('.fa-star').forEach(star => {
+        star.addEventListener('click', function() {
+            const stars = this.parentElement.children;
+            Array.from(stars).forEach(s => {
+                s.classList.remove('text-primary');
+                s.classList.add('text-muted');
+            });
+            let isStar = false;
+            for (let i = 0; i < stars.length; i++) {
+                if (stars[i] === this) {
+                    isStar = true;
+                }
+                if (isStar) {
+                    stars[i].classList.remove('text-muted');
+                    stars[i].classList.add('text-primary');
+                }
+            }
+        });
+    });
+        
     </script>
 
 </body>
