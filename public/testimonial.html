@@ -27,14 +27,6 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
-<style>
-     mark {
-    background-color: yellow;
-    color: black;
-    font-weight: bold;
-    border-radius: 5px;
-}
-</style>        
     </head>
 
     <body>
@@ -143,82 +135,7 @@
                     <h4 class="text-primary">Our Testimonial</h4>
                     <h1 class="display-5 mb-5 text-dark">Our Client Saying!</h1>
                 </div>
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                        <div class="position-relative">
-                            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
-                            <div class="mb-4 pb-4 border-bottom border-secondary">
-                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                </p>
-                            </div>
-                            <div class="d-flex align-items-center flex-nowrap">
-                                <div class="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                                </div>
-                                <div class="ms-4 d-block">
-                                    <h4 class="text-dark">Client Name</h4>
-                                    <p class="m-0 pb-3">Profession</p>
-                                    <div class="d-flex pe-5">
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                        <div class="position-relative">
-                            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
-                            <div class="mb-4 pb-4 border-bottom border-secondary">
-                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                </p>
-                            </div>
-                            <div class="d-flex align-items-center flex-nowrap">
-                                <div class="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                                </div>
-                                <div class="ms-4 d-block">
-                                    <h4 class="text-dark">Client Name</h4>
-                                    <p class="m-0 pb-3">Profession</p>
-                                    <div class="d-flex pe-5">
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item img-border-radius bg-light rounded p-4">
-                        <div class="position-relative">
-                            <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
-                            <div class="mb-4 pb-4 border-bottom border-secondary">
-                                <p class="mb-0">Lorem Ipsum is simply dummy text of the printing Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                </p>
-                            </div>
-                            <div class="d-flex align-items-center flex-nowrap">
-                                <div class="bg-secondary rounded">
-                                    <img src="img/testimonial-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
-                                </div>
-                                <div class="ms-4 d-block">
-                                    <h4 class="text-dark">Client Name</h4>
-                                    <p class="m-0 pb-3">Profession</p>
-                                    <div class="d-flex pe-5">
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                        <i class="fas fa-star text-primary"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="owl-carousel testimonial-carousel" id="testimonial-container">
                 </div>
             </div>
         </div>
@@ -332,18 +249,73 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve the cart from localStorage and parse it as JSON
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-            // Find the element with ID 'cart-count' and update its content
-            const cartCountElement = document.getElementById('cart-count');
-            if (cartCountElement) {
-                cartCountElement.textContent = cart.length;
-            }
+        // Function to display a single review
+        function displayReview(review) {
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('testimonial-item', 'img-border-radius', 'bg-light', 'rounded', 'p-4');
+            
+            const ratingStars = Array(5).fill('<i class="fas fa-star text-primary"></i>')
+                .map((star, index) => index >= review.rating ? '<i class="fas fa-star"></i>' : star)
+                .join('');
+        
+            // Use a default image if no image is provided in the review
+            const reviewImage = review.image || 'img/avatar.jpg';  // Default image path
+        
+            reviewElement.innerHTML = `
+            
+                <div class="position-relative">
+                    <i class="fa fa-quote-right fa-2x text-secondary position-absolute" style="bottom: 30px; right: 0;"></i>
+                    <div class="mb-4 pb-4 border-bottom border-secondary">
+                        <p class="mb-0">${review.review}</p>
+                    </div>
+                    <div class="d-flex align-items-center flex-nowrap">
+                        <div class="bg-secondary rounded">
+                            <img src="${reviewImage}" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
+                        </div>
+                        <div class="ms-4 d-block">
+                            <h4 class="text-dark">${review.name}</h4>
+                            <div class="d-flex pe-5">${ratingStars}</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('testimonial-container').appendChild(reviewElement);
+        }
+        
+        // Fetch reviews from localStorage
+        const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+        
+        // Loop through the reviews and display each one
+        reviews.forEach(review => {
+            displayReview(review);
         });
-        </script>
+        
+        // Initialize Owl Carousel
+        $(document).ready(function () {
+            $(".testimonial-carousel").owlCarousel({
+                loop: true,
+                margin: 30,
+                nav: true,
+                autoplay: true,
+                smartSpeed: 500,
+                dots: true,
+                responsive: {
+                    0: {
+                        items: 2
+                    },
+                    768: {
+                        items: 3
+                    },
+                    1024: {
+                        items: 4
+                    }
+                }
+            });
+        });
+    </script>
     </body>
 
 </html>
