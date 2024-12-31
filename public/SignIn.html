@@ -214,24 +214,32 @@
     const messageElement = document.getElementById('message');
 
     if (signinForm) {
-        signinForm.addEventListener('submit', function (event) {
+        signinForm.addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent the default form submission
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
 
-            // Retrieve user data from localStorage
-            const userData = localStorage.getItem(email);
-            if (userData) {
-                const user = JSON.parse(userData);
-                // Check if the password matches
-                if (user.password === password) {
-                    window.location.href = 'index.html'; // Redirect to a welcome page or dashboard
+            try {
+                // Send signin data to the server
+                const response = await fetch('http://localhost:3000/signin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    window.location.href = 'index.html'; // Redirect to the main page or dashboard
                 } else {
-                    messageElement.innerText = 'Incorrect password. Please try again.';
+                    messageElement.innerText = result.message; // Show error message
                     messageElement.style.display = 'block';
                 }
-            } else {
-                messageElement.innerText = 'No account found with this email. Please sign up.';
+            } catch (error) {
+                console.error('Error:', error);
+                messageElement.innerText = 'An error occurred. Please try again later.';
                 messageElement.style.display = 'block';
             }
         });

@@ -197,45 +197,56 @@
         </div>
     </div>
     <!-- Footer End -->
-
-    <script>
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const messageElement = document.getElementById('message');
-            // Simple validation
-            if (name === '' || email === '' || password === '' || confirmPassword === '') {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                messageElement.innerText = 'Incorrect password. Please try again.';
-                 messageElement.style.display = 'block';
-                return;
-            }
-            
-            // Check if the user is already signed up
-            if (localStorage.getItem(email)) {
-                localStorage.setItem('alreadySignedUp', 'true');
-            // Redirect to Sign In page
-            window.location.href = 'SignIn.html';
-                return;
-            }
-
-            // Store user data in local storage
-            localStorage.setItem(email, JSON.stringify({ name, password }));
-
-            setTimeout(() => {
-                //alert('Sign Up Successful! Redirecting to Sign In page...');
+ <script>
+    document.getElementById('signupForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission
+    
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const messageElement = document.getElementById('message');
+    
+        // Reset message display
+        messageElement.style.display = 'none';
+    
+        // Simple validation
+        if (!name || !email || !password || !confirmPassword) {
+            alert('Please fill in all fields.');
+            return;
+        }
+    
+        if (password !== confirmPassword) {
+            messageElement.innerText = 'Passwords do not match. Please try again.';
+            messageElement.style.display = 'block';
+            return;
+        }
+    
+        try {
+            // Send signup data to the server
+            const response = await fetch('http://localhost:3000/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password }),
+            });
+    
+            const result = await response.json();
+    
+            if (response.ok) {
                 window.location.href = 'SignIn.html'; // Redirect to Sign In page
-            }, 2000); // Simulate a 2-second delay
-        });
-
-    </script>
+            } else {
+                messageElement.innerText = result.message; // Show error message
+                messageElement.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            messageElement.innerText = 'An error occurred. Please try again later.';
+            messageElement.style.display = 'block';
+        }
+    });
+</script>
 </body>
 
 </html>
