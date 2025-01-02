@@ -56,6 +56,76 @@ app.post('/submit-billing', async (req, res) => {
     }
 });
 
+const userSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+
+const User = mongoose.model('User ', userSchema);
+
+// POST endpoint to handle signup
+app.post('/signup', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    const existingUser  = await User.findOne({ email });
+    if (existingUser ) {
+        return res.status(400).json({ message: 'User  already signed up with this email.' });
+    }
+
+    const newUser  = new User({
+        name,
+        email,
+        password,
+    });
+
+    try {
+        await newUser.save();
+        res.status(201).json({ message: 'User  registered successfully!' });
+    } catch (error) {
+        console.error('Error saving user:', error);
+        res.status(500).json({ message: 'Error saving user', error });
+    }
+});
+
+app.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+
+    // Check if the user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(400).json({ message: 'No account found with this email. Please sign up.' });
+    }
+
+    // Check if the password matches
+    if (user.password !== password) {
+        return res.status(400).json({ message: 'Incorrect password. Please try again.' });
+    }
+
+    res.status(200).json({ message: 'Sign in successful!' });
+});
+
+// POST endpoint to handle password reset
+app.post('/reset-password', async (req, res) => {
+    const { email, newPassword } = req.body;
+
+    // Check if the user exists
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(400).json({ message: 'No account found with this email. Please sign up.' });
+    }
+
+    // Update the user's password
+    user.password = newPassword; // You may want to hash the password before saving
+    try {
+        await user.save();
+        res.status(200).json({ message: 'Password has been reset successfully!' });
+    } catch (error) {
+        console.error('Error updating password:', error);
+        res.status(500).json({ message: 'Error updating password', error });
+    }
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
