@@ -40,6 +40,7 @@
 </style>
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        
     </head>
 
     <body>
@@ -169,7 +170,7 @@
                         <div class="row g-4">
                             <div class="col-xl-3">
                                 <div class="input-group w-100 mx-auto d-flex">
-                                    <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                                    <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1" id="searchInput">
                                     <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                                 </div>
                             </div>
@@ -178,10 +179,10 @@
                                 <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
                                     <label for="fruits">Default Sorting:</label>
                                     <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                        <option value="volvo">Nothing</option>
-                                        <option value="saab">Popularity</option>
-                                        <option value="opel">Organic</option>
-                                        <option value="audi">Fantastic</option>
+                                        <option value="none">Nothing</option>
+                                        <option value="popularity">Popularity</option>
+                                        <option value="organic">Organic</option>
+                                        <option value="fantastic">Fantastic</option>
                                     </select>
                                 </div>
                             </div>
@@ -229,8 +230,8 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <h4 class="mb-2">Price</h4>
-                                            <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
-                                            <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
+                                            <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="10" value="0" oninput="amount.value=rangeInput.value">
+                                            <output id="amount" name="amount" min-velue="0" max-value="10" for="rangeInput">0</output>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
@@ -332,9 +333,9 @@
                                 </div>
                             </div>
                             <div class="col-lg-9">
-                                <div class="row g-4 justify-content-center">
+                                <div class="row g-4 justify-content-center" id="product-list" >
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="6.25" data-name="Grapes" data-popularity="5" data-organic="true" data-fantastic="false">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -343,15 +344,15 @@
                                                 <h4>Grapes</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">6.25</span> /kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(1)"> <i class="fas fa-eye"></i> </button>
-                                                     <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(1,'grapes',2.99,'img/fruite-item-5.jpg')">Add to cart</button>
+                                                     <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(1,'grapes',6.25,'img/fruite-item-5.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="6.25" data-name="Grapes" data-popularity="5" data-organic="true" data-fantastic="false">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -360,15 +361,15 @@
                                                 <h4>Grapes</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">6.25</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(1)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(1,'grapes',6.25,'img/fruite-item-5.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="3.49" data-name="Raspberries"  data-popularity="3" data-organic="false" data-fantastic="true">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-2.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -377,15 +378,15 @@
                                                 <h4>Raspberries</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">3.49</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(2)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(2,'raspberries',4.99,'img/fruite-item-2.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(2,'raspberries',3.49,'img/fruite-item-2.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="8.20" data-name="Apricots" data-popularity="4" data-organic="true" data-fantastic="true">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-4.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -394,15 +395,15 @@
                                                 <h4>Apricots</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">8.20</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(3)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(3,'apricots',4.99,'img/fruite-item-4.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(3,'apricots',8.20,'img/fruite-item-4.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="5.00" data-name="Banana" data-popularity="2" data-organic="true" data-fantastic="false">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-3.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -411,15 +412,15 @@
                                                 <h4>Banana</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">5.00</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(4)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(4,'banana',4.99,'img/fruite-item-3.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(4,'banana',5.00,'img/fruite-item-3.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="1.72" data-name="Oranges" data-popularity="1" data-organic="false" data-fantastic="true">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -428,15 +429,15 @@
                                                 <h4>Oranges</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">1.72</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(5)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(5,'oranges',4.99,'img/fruite-item-1.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(5,'oranges',1.72,'img/fruite-item-1.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="3.49" data-name="Raspberries"  data-popularity="3" data-organic="false" data-fantastic="true">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-2.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -445,15 +446,15 @@
                                                 <h4>Raspberries</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">3.49</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(2)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(2,'raspberries',4.99,'img/fruite-item-2.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(2,'raspberries',3.49,'img/fruite-item-2.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="6.25" data-name="Grapes"  data-popularity="5" data-organic="true" data-fantastic="false">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-5.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -462,15 +463,15 @@
                                                 <h4>Grapes</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">6.25</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(1)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(1,'grapes',4.99,'img/fruite-item-5.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(1,'grapes',6.25,'img/fruite-item-5.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-xl-4">
-                                        <div class="rounded position-relative fruite-item">
+                                        <div class="rounded position-relative fruite-item" data-price="1.72" data-name="Oranges" data-popularity="1" data-organic="false" data-fantastic="true">
                                             <div class="fruite-img">
                                                 <img src="img/fruite-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
@@ -479,9 +480,9 @@
                                                 <h4>Oranges</h4>
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">$<span class="price">1.72</span> / kg</p>
                                                     <button class="btn border border-secondary rounded-pill px-3 text-primary ms-2" onclick="viewProduct(5)"> <i class="fas fa-eye"></i> </button>
-                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(5,'oranges',4.99,'img/fruite-item-1.jpg')">Add to cart</button>
+                                                    <button class="btn border border-secondary rounded-pill px-3text-primart" onclick="addToCart(5,'oranges',1.72,'img/fruite-item-1.jpg')">Add to cart</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -674,6 +675,73 @@
     // Redirect to the shop-detail.html page with the product ID as a query parameter
     window.location.href = `shop-detail.html?id=${id}`;
      }
+
+     document.getElementById('rangeInput').addEventListener('input', function() {
+    const selectedPrice = parseFloat(this.value);
+    const products = document.querySelectorAll('.fruite-item');
+
+    products.forEach(product => {
+        const price = parseFloat(product.getAttribute('data-price'));
+        if (price <= selectedPrice) {
+            product.parentElement.style.display = 'block'; // Show product
+        } else {
+            product.parentElement.style.display = 'none'; // Hide product
+        }
+    });
+
+    // Update the displayed amount
+    document.getElementById('amount').value = selectedPrice;
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase(); // Get the search term and convert to lowercase
+    const products = document.querySelectorAll('.fruite-item'); // Select all product items
+
+    products.forEach(product => {
+        const productName = product.getAttribute('data-name').toLowerCase(); // Get the product name
+        if (productName.includes(searchTerm)) {
+            product.parentElement.style.display = 'block'; // Show product if it matches the search term
+        } else {
+            product.parentElement.style.display = 'none'; // Hide product if it doesn't match
+        }
+    });
+});
+
+// Function to handle filtering
+function filterProducts(criteria) {
+        const products = document.querySelectorAll('.fruite-item');
+
+        products.forEach(product => {
+            if (criteria === 'none') {
+                // Show all products
+                product.parentElement.style.display = 'block';
+            } else if (criteria === 'popularity') {
+                products.forEach(product => {
+                const popularity = parseInt(product.getAttribute('data-popularity'), 10);
+                if (popularity > 3) {
+                    product.parentElement.style.display = 'block'; // Show popular products
+                } else {
+                    product.parentElement.style.display = 'none'; // Hide less popular products
+                }
+            });
+            } else {
+                // Filter for "organic" or "fantastic"
+                const attributeValue = product.getAttribute(`data-${criteria}`);
+                if (attributeValue === 'true') {
+                    product.parentElement.style.display = 'block'; // Show matching products
+                } else {
+                    product.parentElement.style.display = 'none'; // Hide non-matching products
+                }
+            }
+        });
+    }
+
+    // Event listener for dropdown
+    document.getElementById('fruits').addEventListener('change', function () {
+        const selectedOption = this.value;
+        filterProducts(selectedOption);
+    });
+
 
     </script>
 
