@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
+const cors = require('cors'); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,54 +19,24 @@ mongoose.connect('mongodb://localhost:27017/99-granites', {
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
-// Create a schema and model
-const billingSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    message: { type: String },
-    street: { type: String, required: true },
-    city: { type: String, required: true },
-    state: { type: String, required: true },
-    zipCode: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
-});
-
-const Billing = mongoose.model('Billing', billingSchema);
-
-// POST endpoint to handle form submission
-app.post('/submit-billing', async (req, res) => {
-    const { name, email, message, street, city, state, zipCode } = req.body;
-
-    // Create a new billing entry with the updated fields
-    const newBilling = new Billing({
-        name,
-        email,
-        message,
-        street,
-        city,
-        state,
-        zipCode
-    });
-
-    try {
-        await newBilling.save();
-        res.status(201).json({ message: 'Billing information saved successfully!' });
-    } catch (error) {
-        res.status(500).json({ message: 'Error saving billing information', error });
-    }
-});
-
+// Create a schema and model for users
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    billingAddress: {
+        street: { type: String },
+        city: { type: String },
+        state: { type: String },
+        zipCode: { type: String }
+    }
 });
 
 const User = mongoose.model('User ', userSchema);
 
 // POST endpoint to handle signup
 app.post('/signup', async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, street, city, state, zipCode } = req.body;
 
     const existingUser  = await User.findOne({ email });
     if (existingUser ) {
@@ -77,6 +47,12 @@ app.post('/signup', async (req, res) => {
         name,
         email,
         password,
+        billingAddress: {
+            street,
+            city,
+            state,
+            zipCode
+        }
     });
 
     try {
@@ -88,6 +64,33 @@ app.post('/signup', async (req, res) => {
     }
 });
 
+// POST endpoint to handle billing address submission
+app.post('/submit-billing', async (req, res) => {
+    const { email, street, city, state, zipCode } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'No account found with this email.' });
+        }
+
+        // Update the user's billing address
+        user.billingAddress = {
+            street,
+            city,
+            state,
+            zipCode
+        };
+
+        await user.save();
+        res.status(200).json({ message: 'Billing address saved successfully!' });
+    } catch (error) {
+        console.error('Error saving billing address:', error);
+        res.status(500).json({ message: 'Error saving billing address', error });
+    }
+});
+
+// POST endpoint to handle signin
 app.post('/signin', async (req, res) => {
     const { email, password } = req.body;
 
